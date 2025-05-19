@@ -17,7 +17,7 @@ const CreateRolePage = () => {
       let data = {
         name: roleName
       };
-      const response = await api.post(`${API_BASE}/api/roles/`, data, authHeader());
+      const response = await api.post(`${API_BASE}/roles`, data, authHeader());
       navigate(`/role/${response.data.id}`);
     } catch (error) {
       showToastError("Could not create a new role. Please try again later.");

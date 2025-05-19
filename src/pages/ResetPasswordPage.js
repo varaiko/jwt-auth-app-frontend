@@ -21,7 +21,7 @@ const ResetPasswordPage = () => {
     const verifyToken = async () => {
       try {
         const data = { token: token };
-        await api.post("http://localhost:8080/api/auth/verify-reset-token", data);
+        await api.post("http://localhost:8080/auth/password/verify", data);
       } catch (err) {
         setError(true);
       } finally {
@@ -44,7 +44,7 @@ const ResetPasswordPage = () => {
     const data = { token: token, newPassword: password };
 
     try {
-      await api.post(`${API_BASE}/api/auth/reset-password`, data);
+      await api.post(`${API_BASE}/auth/password/reset`, data);
       showToastSuccess("Password has been reset. You will be forwarded to login page.");
       setTimeout(() => {
         navigate("/login");

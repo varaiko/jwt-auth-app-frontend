@@ -21,8 +21,8 @@ const UserDetailPage = () => {
     const fetchData = async () => {
       try {
         const [userResponse, roleResponse] = await Promise.all([
-          api.get(`${API_BASE}/api/users/user-info/${id}`, authHeader()),
-          api.get(`${API_BASE}/api/roles`, authHeader()),
+          api.get(`${API_BASE}/users/${id}`, authHeader()),
+          api.get(`${API_BASE}/roles`, authHeader()),
         ]);
         setUserData(userResponse.data);
         const matchedRole = roleResponse.data.content.find(
@@ -50,7 +50,7 @@ const UserDetailPage = () => {
       role: selectedItem.name,
     };
     try {
-      await api.put(`${API_BASE}/api/users/update-user`, data, authHeader());
+      await api.put(`${API_BASE}/users/${id}`, data, authHeader());
       showToastSuccess("User has been updated.");
     } catch (err) {
       showToastError("Error occurred during updating user. Try again later.");
@@ -63,7 +63,7 @@ const UserDetailPage = () => {
     const data = { email: userData.username };
     setIsSubmitting(true);
     try {
-      await api.post(`${API_BASE}/api/auth/forgot-password`, data);
+      await api.post(`${API_BASE}/auth/password/forgot`, data);
       showToastSuccess("User has been sent a link to reset password.");
     } catch (err) {
       showToastError("Error occurred during user password reset. Try again later.");
@@ -75,7 +75,7 @@ const UserDetailPage = () => {
   const deleteUser = async () => {
     setIsSubmitting(true);
     try {
-      await api.delete(`${API_BASE}/api/users/delete-user/${userData.id}`, authHeader());
+      await api.delete(`${API_BASE}/users/${userData.id}`, authHeader());
       showToastSuccess("User has been deleted. You will be forwarded to user management page.");
       setTimeout(() => {
         navigate("/usermanagement");

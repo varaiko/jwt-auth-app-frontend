@@ -24,7 +24,7 @@ const CreateStoryPage = () => {
         content: content,
         url: url
       };
-      const response = await api.post(`${API_BASE}/api/poststory`, data, authHeader());
+      const response = await api.post(`${API_BASE}/stories`, data, authHeader());
       navigate(`/story/${response.data.id}`);
     } catch (error) {
       showToastError('Failed to create the story');

@@ -22,7 +22,7 @@ const StoryListPage = () => {
     handlePageSizeChange,
     pageSizeOptions,
   } = PaginatedSearch({
-    baseSearchUrl: "search-story",
+    baseSearchUrl: "stories/search",
     baseListUrl: "stories",
     sortBy: "date,desc",
   });

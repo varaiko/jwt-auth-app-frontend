@@ -17,8 +17,8 @@ export const RoleDetailPage = () => {
     const fetchData = async () => {
       try {
         const [roleResponse, permResponse] = await Promise.all([
-          api.get(`${API_BASE}/api/roles/` + id, authHeader()),
-          api.get(`${API_BASE}/api/permissions`, authHeader()),
+          api.get(`${API_BASE}/roles/` + id, authHeader()),
+          api.get(`${API_BASE}/permissions`, authHeader()),
         ]);
         setRole(roleResponse.data);
         const updatedPermissions = permResponse.data.map((x) => ({
@@ -49,7 +49,7 @@ export const RoleDetailPage = () => {
       .map((perm) => perm.id);
 
     try {
-      await api.post(`${API_BASE}/api/roles/` + id, { permissionIds }, authHeader());
+      await api.post(`${API_BASE}/roles/` + id + `/permissions`, { permissionIds }, authHeader());
       showToastSuccess("Role has been changed");
     } catch (err) {
       showToastError("Error happened during saving the role. Please try again later.");

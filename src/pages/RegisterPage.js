@@ -22,7 +22,7 @@ const RegisterPage = () => {
     const userData = { username: email, password: password };
 
     try {
-      await api.post(`${API_BASE}/api/auth/register`, userData);
+      await api.post(`${API_BASE}/auth/register`, userData);
       showToastSuccess("User has been registered. You will be forwarded to login page.");
       setTimeout(() => {
         navigate("/login");

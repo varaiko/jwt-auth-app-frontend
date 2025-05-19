@@ -18,7 +18,7 @@ const EditStoryPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get(`${API_BASE}/api/stories/${id}`, authHeader());
+        const response = await api.get(`${API_BASE}/stories/${id}`, authHeader());
         setOpenStoryContent(response.data);
       } catch (err) {
         setError(true);
@@ -34,7 +34,7 @@ const EditStoryPage = () => {
     setIsSubmitting(true);
     try {
       delete openStoryContent.comments;
-      await api.put(`${API_BASE}/api/stories/changestory/${id}`, openStoryContent, authHeader());
+      await api.put(`${API_BASE}/stories/${id}`, openStoryContent, authHeader());
       navigate(`/story/${id}`);
     } catch (err) {
       showToastError("Could not change the story. Check all required fields and try again.");
@@ -45,7 +45,7 @@ const EditStoryPage = () => {
 
   const deleteStory = async () => {
     try {
-      await api.delete(`${API_BASE}/api/stories/${id}`, authHeader());
+      await api.delete(`${API_BASE}/stories/${id}`, authHeader());
       navigate("/stories");
     } catch {
       showToastError("Could not delete the story. Please try again later.");

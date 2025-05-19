@@ -19,8 +19,8 @@ const UserListPage = () => {
     handlePageSizeChange,
     pageSizeOptions,
   } = PaginatedSearch({
-    baseSearchUrl: "users/search-user",
-    baseListUrl: "users/all-users",
+    baseSearchUrl: "users/search",
+    baseListUrl: "users",
     sortBy: "username,desc",
   });
   const navigate = useNavigate();

@@ -1,4 +1,3 @@
-import React from 'react';
 import ErrorPage from '../pages/ErrorPage';
 
 const LoadingAndErrorHandling = ({ loading, error, children }) => {

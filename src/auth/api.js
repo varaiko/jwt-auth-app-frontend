@@ -20,7 +20,7 @@ api.interceptors.response.use(
     if (err.response?.status === 401 && !originalReq._retry) {
       originalReq._retry = true;
       try {
-        const { data } = await axios.post(`${API_BASE}/api/auth/refresh-token`,null,authHeaderWithRefresh());
+        const { data } = await axios.post(`${API_BASE}/auth/token/refresh`,null,authHeaderWithRefresh());
         setCookie('access_token', data.access_token, 900000);
         originalReq.headers.Authorization = `Bearer ${data.access_token}`;
         return api(originalReq);

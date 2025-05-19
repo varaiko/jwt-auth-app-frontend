@@ -25,7 +25,7 @@ const LoginPage = () => {
     const userData = { username: email, password: password };
 
     try {
-      const response = await api.post(`${API_BASE}/api/auth/login`, userData);
+      const response = await api.post(`${API_BASE}/auth/login`, userData);
       setCookie('access_token', response.data.access_token, 999999999);
       setCookie('refresh_token', response.data.refresh_token, 999999999);
       await refreshUserData();

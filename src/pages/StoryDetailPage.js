@@ -23,8 +23,8 @@ const StoryDetailPage = () => {
     const fetchData = async () => {
       try {
         const [storyResponse, commentsResponse] = await Promise.all([
-          api.get(`${API_BASE}/api/stories/${id}`, authHeader()),
-          api.get(`${API_BASE}/stories/comments/${id}`, authHeader()),
+          api.get(`${API_BASE}/stories/${id}`, authHeader()),
+          api.get(`${API_BASE}/stories/${id}/comments`, authHeader()),
         ]);
         setData(storyResponse.data);
         setComments(commentsResponse.data);
@@ -46,7 +46,7 @@ const StoryDetailPage = () => {
 
     const newCommentObject = { comment: newComment, username: user.name };
     try {
-      const response = await api.post(`${API_BASE}/stories/comments/addcomment/${id}`, newCommentObject, authHeader());
+      const response = await api.post(`${API_BASE}/stories/${id}/comments`, newCommentObject, authHeader());
       setComments((prevComments) => [...prevComments, response.data]);
       setNewComment("");
       showToastSuccess("Comment added.");
@@ -73,7 +73,7 @@ const StoryDetailPage = () => {
 
     try {
       const updatedComment = { comment: editingText };
-      await api.put(`${API_BASE}/stories/comments/${id}/${commentId}`, updatedComment, authHeader());
+      await api.put(`${API_BASE}/stories/${id}/comments/${commentId}`, updatedComment, authHeader());
       setComments((prevComments) =>
         prevComments.map((comment) =>
           comment.id === commentId ? { ...comment, comment: editingText } : comment

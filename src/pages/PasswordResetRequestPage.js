@@ -15,7 +15,7 @@ const PasswordResetRequestPage = () => {
     const data = { email: email };
     setIsSubmitting(true);
     try {
-      await api.post(`${API_BASE}/api/auth/forgot-password`, data);
+      await api.post(`${API_BASE}/auth/password/forgot`, data);
       showToastSuccess("E-mail with password reset link has been sent to your e-mail. Link is valid for 30 minutes.");
     } catch (err) {
       showToastError("Failed to send password reset e-mail. Try again later.");

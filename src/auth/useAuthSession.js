@@ -18,7 +18,7 @@ export const useAuthSession = () => {
 
   const generateRefreshToken = useCallback(async () => {
     try {
-      const response = await api.post(`${API_BASE}/api/auth/refresh-token`);
+      const response = await api.post(`${API_BASE}/auth/token/refresh`);
       setCookie("access_token", response.data.access_token, 900000);
       setCookie("refresh_token", response.data.refresh_token, 86400000);
     } catch (err) {
@@ -32,7 +32,7 @@ export const useAuthSession = () => {
 
   const loadUserData = useCallback(async () => {
     try {
-      const response = await api.get(`${API_BASE}/api/users/user-info`);
+      const response = await api.get(`${API_BASE}/users/profile`);
       setUser({
         name: response.data.username,
         isAuthenticated: true,
@@ -44,7 +44,7 @@ export const useAuthSession = () => {
       if (err.response.status === 401) {
         await generateRefreshToken();
         try {
-          const response = await api.get(`${API_BASE}/api/users/user-info`);
+          const response = await api.get(`${API_BASE}/users/profile`);
           setUser({
             name: response.data.username,
             isAuthenticated: true,
@@ -68,7 +68,7 @@ export const useAuthSession = () => {
     const verifyToken = async () => {
       if (getCookie("access_token")) {
         try {
-          await api.post(`${API_BASE}/api/auth/verify-token`);
+          await api.post(`${API_BASE}/auth/token/verify`);
         } catch {
           await generateRefreshToken();
         }

@@ -19,7 +19,7 @@ const PaginatedSearch = ({ baseSearchUrl, baseListUrl, sortBy }) => {
     const fetchData = async () => {
       try {
         const response = await api.get(
-          `${API_BASE}/api/${baseListUrl}?page=0&size=${pageSize}&sort=${sortBy}`,
+          `${API_BASE}/${baseListUrl}?page=0&size=${pageSize}&sort=${sortBy}`,
           authHeader()
         );
         setData(response.data.content);
@@ -40,7 +40,7 @@ const PaginatedSearch = ({ baseSearchUrl, baseListUrl, sortBy }) => {
     }
     try {
       const response = await api.get(
-        `${API_BASE}/api/${baseSearchUrl}?keyword=${search}&page=0&size=${pageSize}&sort=${sortBy}`,
+        `${API_BASE}/${baseSearchUrl}?keyword=${search}&page=0&size=${pageSize}&sort=${sortBy}`,
         authHeader()
       );
       setData(response.data.content);
@@ -66,12 +66,12 @@ const PaginatedSearch = ({ baseSearchUrl, baseListUrl, sortBy }) => {
       let response;
       if (isSearchMode && search !== '') {
         response = await api.get(
-          `${API_BASE}/api/${baseSearchUrl}?keyword=${search}&page=${newPage}&size=${pageSize}&sort=${sortBy}`,
+          `${API_BASE}/${baseSearchUrl}?keyword=${search}&page=${newPage}&size=${pageSize}&sort=${sortBy}`,
           authHeader()
         );
       } else {
         response = await api.get(
-          `${API_BASE}/api/${baseListUrl}?page=${newPage}&size=${pageSize}&sort=${sortBy}`,
+          `${API_BASE}/${baseListUrl}?page=${newPage}&size=${pageSize}&sort=${sortBy}`,
           authHeader()
         );
       }
@@ -92,12 +92,12 @@ const PaginatedSearch = ({ baseSearchUrl, baseListUrl, sortBy }) => {
       let response;
       if (isSearchMode && search !== '') {
         response = await api.get(
-          `${API_BASE}/api/${baseSearchUrl}?keyword=${search}&page=0&size=${newSize}&sort=${sortBy}`,
+          `${API_BASE}/${baseSearchUrl}?keyword=${search}&page=0&size=${newSize}&sort=${sortBy}`,
           authHeader()
         );
       } else {
         response = await api.get(
-          `${API_BASE}/api/${baseListUrl}?page=0&size=${newSize}&sort=${sortBy}`,
+          `${API_BASE}/${baseListUrl}?page=0&size=${newSize}&sort=${sortBy}`,
           authHeader()
         );
       }
