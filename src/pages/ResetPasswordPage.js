@@ -21,7 +21,7 @@ const ResetPasswordPage = () => {
     const verifyToken = async () => {
       try {
         const data = { token: token };
-        await api.post("http://localhost:8080/auth/password/verify", data);
+        await api.post(`${API_BASE}/auth/password/verify`, data);
       } catch (err) {
         setError(true);
       } finally {
