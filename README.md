@@ -1,70 +1,99 @@
-# Getting Started with Create React App
+# jwt-auth-app-frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based frontend for the JWT Auth App, enabling users to register, log in, manage roles and permissions, create stories, and comment on them.
 
-## Available Scripts
+## Backend
 
-In the project directory, you can run:
+This frontend is designed to work with the Spring Boot backend API. You can find the backend repository here: [varaiko/jwt-auth-app-backend](https://github.com/varaiko/jwt-auth-app-backend).
 
-### `npm start`
+## Table of Contents
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* [Features](#features)
+* [Tech Stack & Prerequisites](#tech-stack--prerequisites)
+* [Installation](#installation)
+* [Configuration](#configuration)
+* [Running the App](#running-the-app)
+* [Building for Production](#building-for-production)
+* [Project Structure](#project-structure)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+* **User Authentication:** Register and log in via JWT
+* **Role & Permission UI:** Manage roles, assign permissions, and assign roles to users
+* **Story Management:** Create, view, edit, and delete stories
+* **Commenting:** Add, edit, and delete comments on stories
+* **Responsive Design:** Works across desktop and mobile viewports
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tech Stack & Prerequisites
 
-### `npm run build`
+* **React:** 19.1.0
+* **API Client:** Axios
+* **Routing:** React Router (v6+)
+* **State Management:** React Hooks & Context API
+* **Node.js & npm:** Node.js v16+ and npm v8+ (or Yarn)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Clone the repository**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   git clone https://github.com/varaiko/jwt-auth-app-frontend.git
+   ```
+2. **Navigate into the folder**
 
-### `npm run eject`
+   ```bash
+   cd jwt-auth-app-frontend
+   ```
+3. **Install dependencies**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```bash
+   npm install    # or yarn install
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Configuration
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Create a `.env` file in the project root with the following variable (adjust the URL if your backend runs elsewhere):
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```env
+REACT_APP_API_BASE_URL=http://localhost:8080/api
+```
 
-## Learn More
+This environment variable is used by the API client to target your Spring Boot backend.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Running the App
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Start the development server:
 
-### Code Splitting
+```bash
+npm start       # or yarn start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The app will open at `http://localhost:3000` and reload on changes.
 
-### Analyzing the Bundle Size
+## Building for Production
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Generate optimized static assets:
 
-### Making a Progressive Web App
+```bash
+npm run build   # or yarn build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+The production build will be output to the `build/` directory.
 
-### Advanced Configuration
+## Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```
+jwt-auth-app-frontend/
+├── public/                 # Static assets and HTML template
+├── src/
+│   ├── auth/               # API, authentication utilities
+│   ├── components/         # Reusable UI components
+│   ├── pages/              # Route-based page components
+│   ├── App.jsx             # App entry, router setup
+│   └── index.js            # ReactDOM.render, global styles
+└── .env                    # Environment variables
+```
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* **`auth/`**: contains API client configuration, token storage, and auth helpers.
+* **`components/`**: presentational and container components used across pages.
+* **`pages/`**: top-level views corresponding to routes (e.g. LoginPage, StoryListPage).
